@@ -2171,10 +2171,10 @@ The project will be considered complete when:
 
 ## 📧 Contact
 
-**Project Lead:** [Your Name]
+**Project Lead:** [Philip Koboko]
 **Email:** [kobokophilip@gmail.com]
 **GitHub:** [github.com/KOBOKO23]
-**Phone:** [Your Phone]
+**Phone:** [0715947101]
 
 ---
 

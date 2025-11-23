@@ -2172,8 +2172,8 @@ The project will be considered complete when:
 ## 📧 Contact
 
 **Project Lead:** [Your Name]
-**Email:** [your.email@example.com]
-**GitHub:** [github.com/yourusername]
+**Email:** [kobokophilip@gmail.com]
+**GitHub:** [github.com/KOBOKO23]
 **Phone:** [Your Phone]
 
 ---

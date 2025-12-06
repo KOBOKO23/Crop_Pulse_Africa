@@ -354,7 +354,7 @@ Found an issue in documentation?
 
 **Technical Issues:**
 - GitHub Issues: [Link to repo issues]
-- Developer Discord: https://discord.com/koboko_254
+- Developer Discord: https://discord.com/channels/1232317148131754014/1404964939470340208
 - Email: tech@croppulse.africa
 
 **User Support:**

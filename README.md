@@ -103,7 +103,7 @@ Welcome to the complete documentation for **CropPulse Africa V1.0** - Kenya's pr
 
 [📄 Read API.md](./API.md)
 
-*Note: Current version (V2.0) uses mock data. API is planned for future.*
+*Note: Current version (V1.0) uses mock data. API is planned for future.*
 
 ---
 
@@ -354,11 +354,11 @@ Found an issue in documentation?
 
 **Technical Issues:**
 - GitHub Issues: [Link to repo issues]
-- Developer Discord: https://discord.com/philip Koboko
+- Developer Discord: https://discord.com/koboko_254
 - Email: tech@croppulse.africa
 
 **User Support:**
-- Help Center: [Link]
+- Help Center: help@croppulse.africa
 - WhatsApp: +254 725031730
 - Email: support@croppulse.africa
 

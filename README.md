@@ -1,4 +1,4 @@
-# CropPulse Africa V2.0 - Complete Documentation Index
+# CropPulse Africa V1.0 - Complete Documentation Index
 
 ## 📚 Documentation Overview
 

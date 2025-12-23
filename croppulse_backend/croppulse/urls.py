@@ -1,22 +1,40 @@
 """
-URL configuration for croppulse project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/6.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+URL Configuration for CropPulse Africa project
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularRedocView,
+    SpectacularSwaggerView
+)
 
 urlpatterns = [
+    # Admin
     path('admin/', admin.site.urls),
+    
+    # API Documentation
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+    
+    # API endpoints
+    path('api/v1/users/', include('apps.users.urls')),
+    path('api/v1/weather/', include('apps.weather.urls')),
+    path('api/v1/observations/', include('apps.observations.urls')),
+    path('api/v1/alerts/', include('apps.alerts.urls')),
+    path('api/v1/community/', include('apps.community.urls')),
+    path('api/v1/analytics/', include('apps.analytics.urls')),
 ]
+
+# Serve media files in development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Admin site configuration
+admin.site.site_header = 'CropPulse Africa Administration'
+admin.site.site_title = 'CropPulse Africa Admin'
+admin.site.index_title = 'Welcome to CropPulse Africa Administration'

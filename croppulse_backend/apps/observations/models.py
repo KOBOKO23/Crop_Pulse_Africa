@@ -6,6 +6,19 @@ from django.conf import settings
 from core.validators import validate_latitude, validate_longitude
 from core.utils import get_upload_path
 
+# Named functions for upload_to
+def observation_image_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'observations')
+
+def audio_observation_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'audio_observations')
+
+def crop_report_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'crop_reports')
+
+def pest_disease_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'pest_disease')
+
 
 class FarmObservation(models.Model):
     """Field observations from farmers and field officers"""
@@ -52,22 +65,22 @@ class FarmObservation(models.Model):
     
     # Media attachments
     image1 = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'observations'),
+        upload_to=observation_image_upload_to,
         blank=True,
         null=True
     )
     image2 = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'observations'),
+        upload_to=observation_image_upload_to,
         blank=True,
         null=True
     )
     image3 = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'observations'),
+        upload_to=observation_image_upload_to,
         blank=True,
         null=True
     )
     audio_note = models.FileField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'audio_observations'),
+        upload_to=audio_observation_upload_to,
         blank=True,
         null=True
     )
@@ -156,7 +169,7 @@ class CropReport(models.Model):
     
     # Images
     crop_image = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'crop_reports'),
+        upload_to=crop_report_upload_to,
         blank=True,
         null=True
     )
@@ -232,12 +245,12 @@ class PestDiseaseReport(models.Model):
     
     # Images
     image1 = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'pest_disease'),
+        upload_to=pest_disease_upload_to,
         blank=True,
         null=True
     )
     image2 = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'pest_disease'),
+        upload_to=pest_disease_upload_to,
         blank=True,
         null=True
     )

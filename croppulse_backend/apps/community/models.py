@@ -5,6 +5,16 @@ from django.db import models
 from django.conf import settings
 from core.utils import get_upload_path
 
+# Named functions for upload_to
+def forum_image_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'forum')
+
+def message_attachment_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'messages')
+
+def knowledge_article_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'knowledge')
+
 
 class ForumCategory(models.Model):
     """Categories for forum discussions"""
@@ -39,7 +49,7 @@ class ForumPost(models.Model):
     
     # Media
     image = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'forum'),
+        upload_to=forum_image_upload_to,
         blank=True,
         null=True
     )
@@ -131,7 +141,7 @@ class DirectMessage(models.Model):
     
     # Attachments
     attachment = models.FileField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'messages'),
+        upload_to=message_attachment_upload_to,
         blank=True,
         null=True
     )
@@ -194,7 +204,7 @@ class KnowledgeArticle(models.Model):
     
     # Media
     featured_image = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'knowledge'),
+        upload_to=knowledge_article_upload_to,
         blank=True,
         null=True
     )

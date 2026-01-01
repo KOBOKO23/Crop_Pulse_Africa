@@ -6,7 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
-from django.db.models import models
+from django.db.models import Q
 from .models import (
     ForumCategory, ForumPost, ForumReply,
     DirectMessage, KnowledgeArticle, Like
@@ -125,7 +125,7 @@ class DirectMessageViewSet(viewsets.ModelViewSet):
         """Get messages sent or received by the user"""
         user = self.request.user
         return DirectMessage.objects.filter(
-            models.Q(sender=user) | models.Q(recipient=user)
+            Q(sender=user) | Q(recipient=user)
         )
     
     def perform_create(self, serializer):

@@ -13,7 +13,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': config('DB_NAME', default='croppulse_dev'),
         'USER': config('DB_USER', default='croppulse_user'),
-        'PASSWORD': config('DB_PASSWORD', default='KphiL2022*'),
+        'PASSWORD': config('DB_PASSWORD', default='croppulse_password'),
         'HOST': config('DB_HOST', default='localhost'),
         'PORT': config('DB_PORT', default='5432'),
     }
@@ -21,6 +21,19 @@ DATABASES = {
 
 # CORS - Allow all origins in development
 CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = ['*']
+CORS_ALLOW_METHODS = ['*']
+CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
+
+# CSRF trusted origins for frontend dev
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",  # Vite default
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
 # Email - Console backend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

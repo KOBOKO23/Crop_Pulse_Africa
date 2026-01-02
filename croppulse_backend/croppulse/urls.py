@@ -14,6 +14,7 @@ from drf_spectacular.views import (
 urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
+    path('', include('apps.home.urls')),
     
     # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
@@ -31,8 +32,10 @@ urlpatterns = [
 
 # Serve media files in development
 if settings.DEBUG:
+    import debug_toolbar
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = [path('__debug__/', include(debug_toolbar.urls))] + urlpatterns
 
 # Admin site configuration
 admin.site.site_header = 'CropPulse Africa Administration'

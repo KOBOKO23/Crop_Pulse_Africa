@@ -8,6 +8,10 @@ from phonenumber_field.modelfields import PhoneNumberField
 from core.validators import validate_latitude, validate_longitude
 from core.utils import get_upload_path
 
+# Named function for profile picture uploads
+def profile_picture_upload_to(instance, filename):
+    return get_upload_path(instance, filename, 'profile_pictures')
+
 
 class UserManager(BaseUserManager):
     """Custom user manager"""
@@ -65,7 +69,7 @@ class User(AbstractUser):
     
     # Profile fields
     profile_picture = models.ImageField(
-        upload_to=lambda instance, filename: get_upload_path(instance, filename, 'profile_pictures'),
+        upload_to=profile_picture_upload_to,
         blank=True,
         null=True
     )
@@ -76,7 +80,7 @@ class User(AbstractUser):
     
     # Verification
     is_verified = models.BooleanField(default=False)
-    verification_code = models.CharField(max_length=6, blank=True)
+    verification_code = models.CharField(max_length=6, blank=True, null=True)
     verification_code_created_at = models.DateTimeField(blank=True, null=True)
     
     # Preferences
@@ -121,7 +125,11 @@ class User(AbstractUser):
 
 class FarmerProfile(models.Model):
     """Extended profile for farmers"""
-    
+
+    # Named function for farmer uploads
+    def farmer_upload_to(instance, filename):
+        return get_upload_path(instance, filename, 'farmer_profiles')
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='farmer_profile')
     
     # Farm details
@@ -177,7 +185,11 @@ class FarmerProfile(models.Model):
 
 class FieldOfficerProfile(models.Model):
     """Extended profile for field officers"""
-    
+
+    # Named function for field officer uploads
+    def officer_upload_to(instance, filename):
+        return get_upload_path(instance, filename, 'field_officers')
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='field_officer_profile')
     
     # Work details
